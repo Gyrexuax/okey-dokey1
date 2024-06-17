@@ -1,0 +1,144 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common-fragments :: head"></head>
+<body>
+<div th:insert="~{fragments/common-fragments :: scripts}"></div>
+<div th:replace="fragments/common-fragments :: navbar"></div>
+<div id="container">
+    <div id="carouselExampleControls" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <a th:href="@{/cloth/5}">
+                    <img class="d-block w-100" src="https://i.ibb.co/LtTPFXz/slider5.jpg" alt="First slide">
+                </a>
+            </div>
+            <div class="carousel-item">
+                <a th:href="@{/cloth/46}">
+                    <img class="d-block w-100" src="https://i.ibb.co/L6t3CvP/slider4.jpg" alt="Second slide">
+                </a>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card mb-5 rounded">
+                    <a th:href="${'/cloth?genders=female'}">
+                        <img class="img-fluid rounded" src="https://i.ibb.co/tX5PpF9/womens.png">
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card mb-5 rounded">
+                    <a th:href="${'/cloth?genders=male'}">
+                        <img class="img-fluid rounded" src="https://i.ibb.co/9nrCh34/mens.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container text-center my-3">
+        <h4>POPULAR RIGHT NOW</h4>
+    </div>
+    <div class="container mt-5">
+        <form method="get" action="/cloth/popular">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="clothCarousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="container">
+                                    <div class="row" th:fragment="list">
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[0]})"/>
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[1]})"/>
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[2]})"/>
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[3]})"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="container">
+                                    <div class="row" th:fragment="list">
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[4]})"/>
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[5]})"/>
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[6]})"/>
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[7]})"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="container">
+                                    <div class="row" th:fragment="list">
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[8]})"/>
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[9]})"/>
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[10]})"/>
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[11]})"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <th:block th:replace="fragments/common-fragments :: carousel-indicators('#clothCarousel')"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="bg-blue pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    <div class="bg-black rounded p-4 blockcard">
+                        <svg class="mb-3" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M32 3.69531C31.3813 3.69531 30.7735 3.85727 30.237 4.165L19.2811 10.3277C19.2381 10.3494 19.196 10.373 19.155 10.3986L8.24365 16.5362L8.24364 16.5362L8.23799 16.5394C7.75368 16.8145 7.34035 17.197 7.02913 17.6563C6.97549 17.7238 6.92663 17.7965 6.8833 17.8742C6.8541 17.9266 6.82817 17.9799 6.80544 18.0339C6.5465 18.5385 6.40933 19.0978 6.40627 19.6668L6.40625 19.6668V19.6753V44.3253L6.40627 44.3339C6.40969 44.9702 6.58082 45.5943 6.90241 46.1434C7.224 46.6924 7.68468 47.147 8.23799 47.4612L8.24365 47.4644L30.237 59.8357C30.7736 60.1434 31.3814 60.3053 32 60.3053C32.6186 60.3053 33.2264 60.1434 33.763 59.8357L55.7564 47.4644L55.762 47.4612C56.3153 47.147 56.776 46.6924 57.0976 46.1434C57.4192 45.5943 57.5903 44.9702 57.5937 44.3339L57.5938 44.3253L57.5938 19.6753L57.5937 19.6668C57.5907 19.101 57.455 18.5448 57.1989 18.0425C57.1737 17.9816 57.1445 17.9217 57.1111 17.8629C57.068 17.787 57.0196 17.7159 56.9666 17.65C56.6558 17.1935 56.2441 16.8132 55.762 16.5394L55.7564 16.5362L33.763 4.165C33.2265 3.85727 32.6187 3.69531 32 3.69531ZM9.59375 44.3195V21.2096L30.6233 32.9318L30.4265 56.2851L9.81201 44.6894L9.81044 44.6885C9.7452 44.6511 9.69087 44.5973 9.65285 44.5324C9.61498 44.4677 9.59462 44.3943 9.59375 44.3195ZM33.6144 56.2621L54.188 44.6894L54.1895 44.6886C54.2548 44.6512 54.3091 44.5973 54.3471 44.5324C54.385 44.4677 54.4054 44.3943 54.4062 44.3194V21.2325L45.8438 26.0967V38.1252C45.8438 39.0054 45.1302 39.719 44.25 39.719C43.3698 39.719 42.6562 39.0054 42.6562 38.1252V27.9075L33.8109 32.9324L33.6144 56.2621ZM32.218 30.1714L41.0265 25.1674L20.0091 13.5753L11.2667 18.4929L32.218 30.1714ZM52.7545 18.5049L44.2777 23.3204L23.2766 11.7374L31.8064 6.93939L31.8219 6.93054C31.876 6.89927 31.9375 6.88281 32 6.88281C32.0625 6.88281 32.124 6.89927 32.1781 6.93054L32.1936 6.93939L52.7545 18.5049Z" fill="#9290C3"/>
+                        </svg>
+                        <h3 class="text_blockcard_h1">Free Shipping</h3>
+                        <p class="text_blockcard_body">Free shipping for order above $150</p>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="bg-black rounded p-4 blockcard">
+                        <svg class="mb-3" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M32 20V24" stroke="#9290C3" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M32 40V44" stroke="#9290C3" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M28 40H34C36.2 40 38 38.2 38 36C38 33.8 36.2 32 34 32H30C27.8 32 26 30.2 26 28C26 25.8 27.8 24 30 24H36" stroke="#9290C3" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M32 12C43 12 52 21 52 32C52 43 43 52 32 52C21 52 12 43 12 32V26" stroke="#9290C3" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M20 34L12 26L4 34" stroke="#9290C3" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M32 4C47.4 4 60 16.6 60 32C60 47.4 47.4 60 32 60" stroke="#9290C3" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <h3 class="text_blockcard_h1">Money Guarantee</h3>
+                        <p class="text_blockcard_body">Withing 30 days for an exchange</p>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="bg-black rounded p-4 blockcard">
+                        <svg class="mb-3" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.33301 32.0002C9.33301 19.4817 19.4812 9.3335 31.9997 9.3335C44.5181 9.3335 54.6663 19.4817 54.6663 32.0002V37.3335H48.6663C47.5618 37.3335 46.6663 38.229 46.6663 39.3335V56.6668C46.6663 57.7714 47.5618 58.6668 48.6663 58.6668H50.6663C55.0847 58.6668 58.6663 55.0852 58.6663 50.6668V32.0002C58.6663 17.2726 46.7271 5.3335 31.9997 5.3335C17.2721 5.3335 5.33301 17.2726 5.33301 32.0002V50.6668C5.33301 55.0852 8.91474 58.6668 13.333 58.6668H15.333C16.4376 58.6668 17.333 57.7714 17.333 56.6668V39.3335C17.333 38.229 16.4376 37.3335 15.333 37.3335H9.33301V32.0002ZM54.6663 41.3335V50.6668C54.6663 52.8759 52.8754 54.6668 50.6663 54.6668V41.3335H54.6663ZM9.33301 50.6668V41.3335H13.333V54.6668C11.1239 54.6668 9.33301 52.8759 9.33301 50.6668ZM33.9997 31.3335C33.9997 30.229 33.1042 29.3335 31.9997 29.3335C30.8951 29.3335 29.9997 30.229 29.9997 31.3335V59.3335C29.9997 60.438 30.8951 61.3335 31.9997 61.3335C33.1042 61.3335 33.9997 60.438 33.9997 59.3335V31.3335ZM23.333 37.333C24.4376 37.333 25.333 38.2282 25.333 39.333V51.3335C25.333 52.438 24.4376 53.3335 23.333 53.3335C22.2284 53.3335 21.333 52.438 21.333 51.3335V39.333C21.333 38.2282 22.2284 37.333 23.333 37.333ZM42.6663 39.3335C42.6663 38.229 41.7709 37.3335 40.6663 37.3335C39.5618 37.3335 38.6663 38.229 38.6663 39.3335V51.334C38.6663 52.4386 39.5618 53.334 40.6663 53.334C41.7709 53.334 42.6663 52.4386 42.6663 51.334V39.3335Z" fill="#9290C3"/>
+                        </svg>
+                        <h3 class="text_blockcard_h1">Online Support</h3>
+                        <p class="text_blockcard_body">24 hours a day, 7 days a week</p>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="bg-black rounded p-4 blockcard">
+                        <svg class="mb-3" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M62.6663 53.3333C62.6663 57.016 59.6823 60 55.9997 60H7.99967C4.31701 60 1.33301 57.016 1.33301 53.3333V14.6666C1.33301 11.7213 3.72101 9.33329 6.66634 9.33329H33.561L44.3597 5.42129C45.0437 5.17196 45.801 5.5253 46.0503 6.20663L47.1877 9.33329H51.9997C54.945 9.33329 57.333 11.7213 57.333 14.6666V17.3333C60.2783 17.3333 62.6663 19.7213 62.6663 22.6666V53.3333ZM6.66634 12C5.19434 12 3.99967 13.1946 3.99967 14.6666C3.99967 16.1386 5.19434 17.3333 6.66634 17.3333H11.2597H11.5117C11.529 17.3266 11.5397 17.312 11.557 17.3053L26.1997 12H6.66634ZM45.437 12.2413L44.021 8.34263L41.285 9.33329H41.289L33.937 12H33.9237L19.205 17.3333H47.2877L45.437 12.2413ZM54.6663 14.6666C54.6663 13.1946 53.4717 12 51.9997 12H48.1557L50.0943 17.3333H54.6663V14.6666ZM57.333 20H6.66634C5.69034 20 4.78634 19.7186 3.99967 19.26V53.3333C3.99967 55.5426 5.79167 57.3333 7.99967 57.3333H55.9997C58.209 57.3333 59.9997 55.5426 59.9997 53.3333V44H54.6663C51.721 44 49.333 41.612 49.333 38.6666C49.333 35.7213 51.721 33.3333 54.6663 33.3333H59.9997V22.6666C59.9997 21.1946 58.805 20 57.333 20ZM59.9997 41.3333V36H54.6663C53.1943 36 51.9997 37.1946 51.9997 38.6666C51.9997 40.1386 53.1943 41.3333 54.6663 41.3333H59.9997ZM54.6663 37.3333H57.333V40H54.6663V37.3333Z" fill="#9290C3"/>
+                        </svg>
+                        <h3 class="text_blockcard_h1">Flexible Payment</h3>
+                        <p class="text_blockcard_body">Pay with multiple credit cards</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:insert="~{fragments/common-fragments :: footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,15 @@
+create sequence cloth_id_seq start 109 increment 1;
+create sequence orders_seq start 6 increment 1;
+create sequence users_id_seq start 4 increment 1;
+create table clothes (id int8 not null, cloth_gender varchar(255) not null, cloth_title varchar(255) not null, cloth_type varchar(255) not null, clother varchar(255) not null, color varchar(255) not null, description varchar(255), filename varchar(255), price int4 not null, size varchar(255) not null, type varchar(255) not null, primary key (id));
+create table orders (id int8 not null, address varchar(255) not null, city varchar(255) not null, date timestamp default current_timestamp, email varchar(255) not null, first_name varchar(255) not null, last_name varchar(255) not null, phone_number varchar(255) not null, post_index int4 not null, total_price float8 not null, user_id int8, primary key (id));
+create table orders_clothes (order_id int8 not null, clothes_id int8 not null);
+create table user_role (user_id int8 not null, roles varchar(255));
+create table users (id int8 not null, activation_code varchar(255), active boolean, address varchar(255), city varchar(255), email varchar(255) not null, first_name varchar(255) not null, last_name varchar(255), password varchar(255) not null, password_reset_code varchar(255), phone_number varchar(255), post_index varchar(255), primary key (id));
+create table users_cloth_list (user_id int8 not null, cloth_list_id int8 not null);
+alter table if exists orders add constraint FK32ql8ubntj5uh44ph9659tiih foreign key (user_id) references users;
+alter table if exists orders_clothes add constraint FK9sinuoeqhv6mgegcvyyvl10or foreign key (clothes_id) references clothes;
+alter table if exists orders_clothes add constraint FKi60yg8mqvrml5pt4lh5ef526o foreign key (order_id) references orders;
+alter table if exists user_role add constraint FKj345gk1bovqvfame88rcx7yyx foreign key (user_id) references users;
+alter table if exists users_cloth_list add constraint FKmigi2wn769wjgiqxo4c2mnhub foreign key (cloth_list_id) references clothes;
+alter table if exists users_cloth_list add constraint FKabrvmg2g19wr4v9wddr91tm90 foreign key (user_id) references users;

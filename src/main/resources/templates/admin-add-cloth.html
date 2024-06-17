@@ -1,0 +1,92 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common-fragments :: head"></head>
+<body>
+<div th:insert="~{fragments/common-fragments :: scripts}"></div>
+<div th:replace="fragments/common-fragments :: navbar"></div>
+<div id="container" class="bg-light">
+    <div class="py-5">
+        <div class="container py-5 bg-white shadow-sm card-height">
+            <div class="row mx-3">
+                <th:block th:replace="fragments/account-fragments :: account-sidebar"/>
+                <div class="col-md-9 mb-5">
+                    <th:block th:replace="fragments/common-fragments :: info-title(
+                        text='Add cloth',
+                        icon='fas fa-plus-square mr-2'
+                    )"/>
+                    <br/>
+                    <form method="post" action="/admin/add/cloth" enctype="multipart/form-data">
+                        <div class="form row">
+                            <th:block th:replace="fragments/account-fragments :: add-cloth-input(
+                                title='Cloth title',
+                                name='clothTitle',
+                                placeholder='Enter the cloth title',
+                                value=(${cloth} ? ${cloth.ClothTitle} : ''),
+                                error=(${clothTitleError})
+                            )"/>
+                            <th:block th:replace="fragments/account-fragments :: add-cloth-input(
+                                title='Brand',
+                                name='clother',
+                                placeholder='Enter the brand',
+                                value=(${cloth} ? ${cloth.clother} : ''),
+                                error=(${clotherError})
+                            )"/>
+                        </div>
+                        <div class="form row mt-3">
+                            <th:block th:replace="fragments/account-fragments :: add-cloth-select(
+                                title='Cloth type',
+                                name='type',
+                                options=(${ {'T shirt', 'Sneakers', 'Shorts', 'Pants'} }),
+                                error=(${typeError})
+                            )"/>
+                            <th:block th:replace="fragments/account-fragments :: add-cloth-input(
+                                title='Size',
+                                name='size',
+                                placeholder='Enter the size',
+                                value=(${cloth} ? ${cloth.size} : ''),
+                                error=(${sizeError})
+                            )"/>
+                        </div>
+                        <div class="form row mt-3">
+                            <th:block th:replace="fragments/account-fragments :: add-cloth-select(
+                                title='Gender',
+                                name='clothGender',
+                                options=(${ {'male', 'female'} }),
+                                error=(${clothGenderError})
+                            )"/>
+                        </div>
+                        <div class="form row mt-3">
+                            <th:block th:replace="fragments/account-fragments :: add-cloth-input(
+                                title='Color',
+                                name='color',
+                                placeholder='Enter the cloth color',
+                                value=(${cloth} ? ${cloth.color} : ''),
+                                error=(${colorError})
+                            )"/>
+                        </div>
+                        <div class="form row mt-3">
+                            <th:block th:replace="fragments/account-fragments :: add-cloth-input(
+                                title='Price',
+                                name='price',
+                                placeholder='Enter the price',
+                                value=(${cloth} ? ${cloth.price} : ''),
+                                error=(${priceError})
+                            )"/>
+                            <div class="col" style="margin-top: 35px">
+                                <input type="file" name="file"/>
+                            </div>
+                        </div>
+                        <th:block th:replace="fragments/common-fragments :: icon-button(
+                            text='Add',
+                            buttonClassName='mt-3',
+                            icon='fas fa-plus-square mr-2'
+                        )"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:insert="~{fragments/common-fragments :: footer}"></footer>
+</body>
+</html>
